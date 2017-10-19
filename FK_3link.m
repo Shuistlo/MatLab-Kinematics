@@ -5,14 +5,23 @@
 % frame0, 3
 
 function [A01,A12,A23,T03]=FK_3link(t1,t2,t3,L)
+%these all only rotate around the z axis
+A01 = [cosd(t1) -sind(t1) 0  L*cosd(t1); 
+       sind(t1) cosd(t1)  0  L*sind(t1);
+       0    0      1   0; %rotating around z axis 
+       0    0      0   1;]
 
-A01 = [];
 
+A12 = [cosd(t2) -sind(t2) 0 L*cosd(t2);
+       sind(t2) cosd(t2)  0 L*sind(t2);
+       0        0         1    0;
+       0        0         0    1;]
 
-A12 = [];
-
-A23 =[]; 
+A23 =[cosd(t3)  -sind(t3) 0  L*cosd(t3);
+      sind(t3) cosd(t3)   0  L*sind(t3);
+      0            0      1     0;
+      0           0       0     1;] 
   
-T03=  ;
+T03=  A01*A12*A23;
 
   
